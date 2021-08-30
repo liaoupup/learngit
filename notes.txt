@@ -1,0 +1,49 @@
+一，开始
+1 git inti 创建仓库，唯一可以不在仓库里面执行的，命令？
+2 把东西放到仓库里，执行$ git add xxx 
+3 执行$ git commit -m "本次提交的说明"
+
+二. 更改文件后在跟新仓库
+1 git status 命令可以让我们时刻掌握仓库当前的状态
+2 git diff ”xxxx“ 看看具体修改了什么内容
+3 git add readme.txt 提交到仓库
+4 git commit -m "add distributed"  
+小结：要随时掌握工作区的状态，使用git status命令。如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+
+三 多次存档项目和版本回退
+1 流程如上，像游戏一样，每到一定程度就要存档，Git也是一样，每当你觉得文件修改到一定程度的时候，就可以“保存一个快照”，
+这个快照在Git中被称为commit。
+2 git log版本控制系统这个命令可以告诉我们历史记录
+3 如果嫌输出信息太多，看得眼花缭乱的，可以试试加上--pretty=oneline
+4 看到的一大串类似1094adb...的是commit id（版本号）
+*5 回退到某一个版本 在Git中，用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^当然往上100个版本
+写100个^比较容易数不过来，所以写成HEAD~100。
+6 $ git reset --hard HEAD^ 回到之前的版本 --hard参数后面
+7 看看readme.txt $ cat readme.txt是否为上一个版本
+*8 用git log再看看现在版本库的状态，发现最新的版本不在了，不过办法是$ git reset --hard 1094a（commit id）
+版本号没必要写全，前几位就可以了
+9 忘了commit id？git reflog
+小结：HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。要重返未来，用git reflog查看命令历史，以便确定要
+回到未来的哪个版本。
+
+四. 缓冲区和工作区
+参考教程
+
+五. 撤销修改
+1 Git会告诉你，git checkout -- file可以丢弃工作区的修改：$ git checkout -- readme.txt
+2 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+总之，就是让这个文件回到最近一次git commit或git add时的状态。
+3 git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令，
+我们在后面的分支管理中会再次遇到git checkout命令。
+4 错误修改已经提交到缓冲区但没commit还有机会，$ git reset HEAD readme.txt重新放回工作区
+5 git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+6 现在，假设你不但改错了东西，还从暂存区提交到了版本库，怎么办呢？还记得版本回退一节吗？可以回退到
+上一个版本。不过，这是有条件的，就是你还没有把自己的本地版本库推送到远程。还记得Git是分布式版本控制
+系统吗？我们后面会讲到远程版本库，一旦你把stupid boss提交推送到远程版本库，你就真的惨了……
+
+六. 删除文件
+
+七. 远程仓库Github
