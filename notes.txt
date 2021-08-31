@@ -54,3 +54,10 @@
 3 $ git merge dev把dev分支的工作成果合并到master分支上 git branch -d dev删除分支
 4 切换分支这个动作，用switch更科学创建并切换到新的dev分支，可以使用：git switch -c dev
 5 直接切换到已有的master分支，可以使用：git switch master
+
+6小结
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
+用git log --graph命令可以看到分支合并图。
+
+7
